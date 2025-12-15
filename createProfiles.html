@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Profile</title>
+</head>
+<body>
+  <h1>Create Profile</h1>
+
+  <form id="createForm">
+    <label>Email: <input type="text" name="email" required></label><br><br>
+    <label>Password: <input type="text" name="password" required></label><br><br>
+    <label>First Name: <input type="text" name="first_name" required></label><br><br>
+    <label>Last Name: <input type="text" name="last_name" required></label><br><br>
+    <button id="Create Profile">Create Profile</button>
+  </form>
+
+  <!--Button to go back to the homepage-->
+  <p id="message"></p>
+  <button onclick="location.href='index.html'">Back to Home</button>
+
+  <script>
+    // Select the edit form by its ID 
+    document.getElementById("createForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      // Convert the form into a plain JavaScript object
+      const data = Object.fromEntries(formData.entries());
+
+      // Send the data to the server to update 
+      const res = await fetch("/create-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+    };
+  </script>
+</body>
+</html>
