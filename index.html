@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alumni App</title>
+</head>
+<body>
+  <h1>Alumni App</h1>
+  <button id="loadUsers">Load Users</button>
+  <button id="loadProfiles">Load Profiles</button>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById('loadUsers').onclick = async () => {
+      const res = await fetch('/users');
+      const data = await res.json();
+      document.getElementById('output').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    };
+    
+    document.getElementById('loadProfiles').onclick = async () => {
+      const res = await fetch('/alumni');
+      const data = await res.json();
+      document.getElementById('output').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    };
+ </script>
+</body>
+</html>
